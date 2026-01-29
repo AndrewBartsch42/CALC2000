@@ -3,7 +3,7 @@
        program-id. calc2000.
       * Programmer.: Andrew Bartsch
       * Date : 1/29/2026
-      * GithubURL:
+      * GithubURL:https://github.com/AndrewBartsch42/CALC2000
       * Description: 
       * This program calculates future values for an investment
       * and doubles the investment amount twice 
@@ -27,9 +27,11 @@
        01  work-fields.
 
            05  future-value                pic 9(7)v99.
-           05  year-counter                pic 999.
-           05  edited-whole-value         pic zz,zzz,zz9.
-           05  edited-decimal-value       pic zzz,zzz.99.
+           05  year-counter               pic 999.
+           05  edited-investment-value    pic zz,zzz,zz9.
+           05  edited-future-value        pic zzz,zzz.99.
+           05  edited-interest-rate       pic zzzzzzz.zz.
+           05  edited-years-amount        pic zzzzzzzzz9.
 
        procedure division.
 
@@ -48,7 +50,7 @@
                move 1 to year-counter
                perform 120-calculate-next-fv
                    until year-counter > number-of-years
-               move future-value to edited-whole-value. 
+               move future-value to edited-future-value. 
            perform 140-display-values.
 
        120-calculate-next-fv.
@@ -59,9 +61,12 @@
            add 1 to year-counter.
        
        140-display-values.
-           move edited-whole-value to edited-decimal-value. 
+           move investment-amount to edited-investment-value.
+           move number-of-years to edited-years-amount.
+           move yearly-interest-rate to edited-interest-rate.  
            display "--------------------------------".
-           display "Investment Amount = " investment-amount.
-           display "Number of years   = " number-of-years.
-           display "Yearly Interest   = " yearly-interest-rate.
-           display "Future value      = " edited-decimal-value.     
+           display "Investment Amount = " edited-investment-value.
+           display "Number of years   = " edited-years-amount.
+           display "Yearly Interest   = " edited-interest-rate.
+           display "Future value      = " edited-future-value.     
+    
